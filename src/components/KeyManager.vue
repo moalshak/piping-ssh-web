@@ -13,9 +13,6 @@
       <v-expansion-panel-text>
         <v-switch label="Enabled" v-model="editing.enabled" color="info" inset></v-switch>
         <v-text-field label="name" v-model="editing.name" variant="solo-filled"/>
-        <v-radio-group label="Store type" v-model="editing.storeType" inline>
-          <v-radio v-for="t in authKeysStoreTypes" :id="t" :label="strings?.store_type(t) ?? ''" :value="t"/>
-        </v-radio-group>
         <!-- NOTE: Should not make public key and private key updatable because keys are identified by fingerprint. -->
         <v-btn color="secondary" @click="updateAuthKeySet(editing)" :disabled="!keySetChanged(editing)" style="margin-bottom: 2rem;">Update</v-btn>
         <v-textarea label="public key" :model-value="editing.publicKey" :readonly="true" variant="solo-filled">
@@ -55,9 +52,7 @@
 
 <script setup lang="tsx">
 import {mdiDelete, mdiDownload, mdiEye, mdiEyeOff, mdiKey} from "@mdi/js";
-import {strings} from "@/strings/strings";
 import {
-  authKeysStoreTypes,
   findStoredAuthKeySetByFingerprint,
   removeAuthKeySet,
   StoredAuthKeySet,

@@ -2,9 +2,6 @@
   <v-sheet rounded="lg" style="padding: 1rem">
     <v-form @submit.prevent="save" v-model="formValid">
       <v-text-field label="name" v-model="name" variant="solo-filled" :rules="createRequiredRules('Name')"/>
-      <v-radio-group label="Store type" v-model="storeType" inline>
-        <v-radio v-for="t in authKeysStoreTypes" :id="t" :label="strings?.store_type(t) ?? ''" :value="t"/>
-      </v-radio-group>
       <!-- TODO: add WebAuthn? -->
       <!-- TODO: import keys from file input -->
       <v-textarea label="public key" v-model="publicKey" variant="solo-filled" :rules="createRequiredRules('Private key')"/>
@@ -17,7 +14,6 @@
 <script setup lang="ts">
 import {ref, watch} from "vue";
 import {AuthKeySet, AuthKeysStoreType, authKeysStoreTypes, storedAuthKeySets} from "@/authKeySets";
-import {strings} from "@/strings/strings";
 import {getAuthPublicKeyType} from "@/go-wasm-using-worker";
 import {createRequiredRules} from "@/createRequiredRules";
 

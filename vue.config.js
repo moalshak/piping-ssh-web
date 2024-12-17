@@ -4,7 +4,7 @@ module.exports = defineConfig({
     config
       .plugin('html')
       .tap(args => {
-        args[0].title = "Piping SSH";
+        args[0].title = "OpenSSH key manager";
         return args;
       });
   },
